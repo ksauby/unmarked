@@ -40,6 +40,7 @@ linkfn = function(x) {
 #'
 #' @param beta
 #' @param site_type
+#' @param np2
 
 #' @references Miller, D. A. W., C. S. Brehem, J. E. Hines, J. D. Nichols, and R. N. Fisher. 2012. Joint estimation of habitat dynamics and species interactions: disturbance reduces co-occurrence of non-native predators with an endangered toad. Journal of Applied Ecology 81:1288-1297.
 
@@ -66,12 +67,13 @@ initPsi = function(beta, site_type) {
 #' @param beta
 #' @param yr
 #' @param site_type
+#' @param np2
 
 #' @references Miller, D. A. W., C. S. Brehem, J. E. Hines, J. D. Nichols, and R. N. Fisher. 2012. Joint estimation of habitat dynamics and species interactions: disturbance reduces co-occurrence of non-native predators with an endangered toad. Journal of Applied Ecology 81:1288-1297.
 
 #' @export
 
-phi = function(beta, yr, site_type) {
+phi = function(beta, yr, site_type, np2) {
     k = 4 + site_type * np2  # (eg., k=4, nyrsM1=6, yr=1)
     #  beta[5] = Pr(hab: dry-dry)
 	w0 = beta[k + yr]
@@ -242,22 +244,22 @@ Like = function(beta) {
 }
 
 #' Computes detection probability matrix
-#' @description This function runs a model specified by name, where name is of the form psi(X),phi(Y),p(Z), where:
-#' \itemise{
-	#' \item X is a design-matrix file for initial occupancy (psi), and specified by by the variable, modname1
-	#' \item Y is a design-matrix file for state transitions (phi), and specified by by the variable, modname2
-	#' \item Z is a design-matrix file for detection probabilities (p), and specified by by the variable, modname3
+#' @description This function runs a model specified by name, where name is of the form psi(X), phi(Y), p(Z), where:
+#' \itemize{
+#' 	\item{X is a design-matrix file for initial occupancy (psi), and specified by by the variable, modname1}
+#' 	\item{Y is a design-matrix file for state transitions (phi), and specified by by the variable, modname2}
+#' 	\item{Z is a design-matrix file for detection probabilities (p), and specified by by the variable, modname3}
 #' }
 # The model to run is defined by a single design-matrix.  This design matrix consists of R rows and C columns, where 
-#' \itemise{
-	#' \item R = number of real parameters (psi, phi, p) and
-	#' \item C = number of beta's
+#' \itemize{
+	#' \item{R = number of real parameters (\psi, \phi, p) and}
+	#' \item{C = number of \beta's}
 #' }
 #'	To make input simpler, the design matrix is split into 3 parts:
-#' \itemise{
-	#' \item Part 1 contains all rows and the columns which affect initial psi.
-	#' \item Part 2 contains all rows and the columns which affect transitions (e's and g's).
-	#' \item Part 3 contains all rows and the columns which affect detection (p's).
+#' \itemize{
+	#' \item{Part 1 contains all rows and the columns which affect initial \psi.}
+	#' \item {Part 2 contains all rows and the columns which affect transitions (e's and g's).}
+	#' \item{Part 3 contains all rows and the columns which affect detection (p's).}
 #' }
 #' The 3 parts are then horizontally concatenated to produce a single design matrix.
 #' @param beta
@@ -266,7 +268,7 @@ Like = function(beta) {
 
 #' @export
 
-doModl = function(mnum, modname1, modname2, modname3) {
+occHabDyn = function(mnum, modname1, modname2, modname3) {
     modname = sprintf("%d)%s%s%s", mnum, modname1, modname2, modname3)
     # read in design-matrix, part 1
     dmname = sprintf("DM%s.csv", modname1)

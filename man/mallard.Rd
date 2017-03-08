@@ -14,7 +14,7 @@ A list with 3 components
 	\describe{
 	\item{mallard.y}{response matrix}
 	\item{mallard.site}{site-specific covariates}
-	\item{mallard.obs}{survey-specific covariates}
+	\item{mallard.obs}{survey-specific covariates: survey effort (ivel) and date}
 	}
 }
 \references{

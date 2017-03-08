@@ -1,0 +1,243 @@
+21.4*.813
+21.4 -21.4*.813
+library(lubridaste)
+library(lubrida=te)
+library(lubridate)
+-v
+install.packages("rgeos", repos="http://R-Forge.R-project.org")#
+require(rgeos)
+library(rgeos)
+require(rgeos)
+library(rgeos)
+install.packages("rgdal", repos="http://R-Forge.R-project.org")#
+require(rgdal)
+R CMD INSTALL ~/Downloads/rgdal_0.9-1.tar.gz --configure-args='--with-gdal-config=/Library/Frameworks/GDAL.framework/Programs/gdal-config#
+ --with-proj-include=/Library/Frameworks/PROJ.framework/Headers#
+ --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib'
+R CMD INSTALL ~/Downloads/rgdal_0.9-1.tar.gz --configure-args='--with-gdal-config=/Library/Frameworks/GDAL.framework/Programs/gdal-config--with-proj-include=/Library/Frameworks/PROJ.framework/Headers--with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib'
+library(lme3)
+library(lme4)
+300/241
+.244*30
+1.25*300
+1.25*240
+7*12
+7849-7527
+322/1353
+8028-7527
+501/1353
+8028-7957
+1353-501
+852/71
+7956-7878
+8176-8029
+8176-8092
+250*.75
+250*.25
+42*2 + 17*2
+118/19
+21/6.2
+59.5*.75
+59.5*.5 + 59.5
+71/12
+597/80
+597/8
+432/8
+15*8 + 9*3
+?seq_len
+7.25/3
+7.25/4
+for(i in 0:9){x=cos(2*pi/10*i);y=x+1;z=(y-2)*22;pie(c(y,8-y),col=c(0,7),init.angl=135-z,bo=F,la=NA)}
+install.packages("ProjectTemplate")
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("data.table")
+install.packages("corrgram")
+install.packages("survival")
+install.packages("shapefiles")
+install.packages("rgdal")
+install.packages("PBSmapping")
+install.packages("sp")
+install.packages("gdistance")
+install.packages("chron")
+install.packages("unmarked")
+install.packages("lme4")
+install.packages("rgeos", repos="http://R-Forge.R-project.org", type="source")#
+require(rgeos)
+install.packages('rgdal',repos="http://www.stats.ox.ac.uk/pub/RWin")
+library(rgdal)
+install.packages("http://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
+18/1.618
+189+114
+library(lubridate)
+library(magrittr)
+seasons <- data.frame(#
+	   SE = as.POSIXct(c("2009-3-20", "2010-3-20", "2011-3-20", "2012-3-20", #
+            "2013-3-20", "2014-3-20"), format="%Y-%m-%d"),#
+	   SS = as.POSIXct(c("2009-6-21", "2010-6-21", "2011-6-21", "2012-6-20",#
+            "2013-6-20", "2014-6-20"), format="%Y-%m-%d"),#
+	   FE = as.POSIXct(c("2009-9-22", "2010-9-23", "2011-9-23", "2012-9-22",#
+            "2013-9-22", "2014-9-22"), format="%Y-%m-%d"),#
+	   WS = as.POSIXct(c("2009-12-21", "2010-12-21", "2011-12-22", "2012-12-21", #
+            "2013-12-21", "2014-12-21"), format="%Y-%m-%d")#
+    )#
+#
+    assignSeason <- function(dat, SeasonStarts=seasons) {#
+	    dat %<>% mutate(#
+		    Season = lapply(Date,#
+				function(x) {#
+					findInterval(#
+						x, #
+						SeasonStarts[which(year(x)==year(SeasonStarts$WS)), ]#
+					)#
+				}#
+			) %>% unlist	#
+		)#
+	    dat[which(dat$Season==0 | dat$Season==4), ]$Season 	<- "Winter"#
+	    dat[which(dat$Season==1), ]$Season 					<- "Spring"#
+	    dat[which(dat$Season==2), ]$Season 					<- "Summer"#
+	    dat[which(dat$Season==3), ]$Season 					<- "Fall"#
+	    return(dat)#
+    }
+dat = data.frame(#
+	    Date = as.POSIXct(strptime(as.Date("2011-12-01", format = "%Y-%m-%d") + #
+            (0:10)*30, format="%Y-%m-%d" ))#
+    )#
+    dat %>% assignSeason
+library(dplyr)
+dat = data.frame(#
+	    Date = as.POSIXct(strptime(as.Date("2011-12-01", format = "%Y-%m-%d") + #
+            (0:10)*30, format="%Y-%m-%d" ))#
+    )#
+    dat %>% assignSeason
+library(devtoolks)
+library(devtools)
+?install_github
+devtools::install_github("ksauby/ACSampling", auth_token="2ab30a602e52fae481f4249cc25e892c0a9ccfc7", subdir="/code/Restricted_ACS_Simulations/ACSampling", repos=NULL)
+devtools::install_github("ksauby/ACSampling", auth_token="2794c3f10db92f525181a0b1f6c19064fe3a2ef3", subdir="/code/Restricted_ACS_Simulations/ACSampling", repos=NULL)
+devtools::install("~/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install(pkg="~/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install(pkg="Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install(pkg="~/Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install(pkg="/Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install_local(path="/Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+library(devtools)
+devtools::install_local(path="/Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+devtools::install(pkg="/Users/KSauby/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+install.packages("~/Documents/Projects/ACSampling/code/Restricted_ACS_Simulations/ACSampling_0.0.0.9000.tar.gz")
+??limit
+37-13
+24/37
+37-13
+26/37
+25/37
+23/37
+29/37
+30/37
+22/37
+30/37
+29/37
+28/37
+27/37
+35/37
+30/37
+29/37
+26/37
+26/37 - .6757
+28/37
+30/37
+29/37
+37-12
+25/37
+219*.8
+219*.8 - 17
+26/3
+17/900
+42/900
+49/900
+29/40
+1/25
+8/25
+10/25
+(7.5 + 3.75)/15
+12*0.75
+11 * 0.75
+11/15
+11*0.25
+11/15 * 6
+32/41 +0.03.5
+32/41 + 0.035
+(32/41 + 0.035)*100
+100/41
+23/40 * 100
+(23/40 * 100)+5
+(164 + 13.5 + 6)
+(164 + 13.5 + 6)/365
+(164 + 13.5 + 6 + (50))/365
+(164 + 13.5 + 6 + (60))/365
+(164 + 13.5 + 6 + (70))/365
+(164 + 13.5 + 6 + (75))/365
+102/40
+102/41
+?table
+9.49/2
+12.75+8.25
+(10.5 + 6.5)/(12.75+8.25)
+.25^2 * 2
+(.25^2 * 2)^0.5
+(.25^2 * 2)^0.5 * 2
+3/8
+5/8
+6/8
+30*1.5
+40*15
+40*1.5
+13.25 - 4.5
+(276.29+8.75)/365
+16*3
+16*4
+84/12
+9/12
+9/12*14
+22+60+78+80+88+98
+22+38+18+2+8+10
+239/785
+(239+53)/785
+.492+.139
+.412+.166+.002
+.412/.58
+.166/.58
+.412*.58
+.71*.58
+98-54
+22+49+43+33+36+44
+60-11
+78-26
+80-35
+88-47
+98-52
+22+49+52+45+41+46
+library(RMark)
+?test_ddl
+data(dipper)    dipper.processed=process.data(dipper,groups=("sex"))    release.gof(dipper.processed)
+setwd('/Users/KSauby/Documents/Projects')
+setwd("./unmarked")#
+#devtools::test()#
+devtools::document()#
+devtools::install()
+library(unmarked)
+?doModl
+setwd('/Users/KSauby/Documents/Projects')
+setwd("./unmarked")#
+#devtools::test()#
+devtools::document()#
+devtools::install()
+?doModl
+library(unmarked)
+?doModl
+?doModl
+setwd('/Users/KSauby/Documents/Projects')
+setwd("./unmarked")#
+#devtools::test()#
+devtools::document()#
+devtools::install()

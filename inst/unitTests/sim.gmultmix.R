@@ -253,10 +253,20 @@ hist(simout[,5]); abline(v=0.5, col=4)
 
 # ------------------------- dependent double observer ------------------
 
+# found info here: https://groups.google.com/forum/#!topic/unmarked/XSjOU4Q4Iw0
 
-
-sim.dep.double <- function(nSites=200, numPrimary=2, lambda=1, phi=0.6,
-                           pA=0.8, pB=0.6, obsmat, alpha=0.5)
+# n sites
+# numPrimary
+sim.dep.double <- function(
+	nSites=200, 
+	numPrimary=2, 
+	lambda=1, 
+	phi=0.6,
+    pA=0.8, 
+	pB=0.6, 
+	obsmat, 
+	alpha=0.5
+)
 {
     if(numPrimary==1 & phi<1) {
         phi <- 1
