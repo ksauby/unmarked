@@ -268,11 +268,23 @@ Like = function(beta) {
 
 #' @export
 
-occHabDyn = function(mnum, modname1, modname2, modname3) {
-    modname = sprintf("%d)%s%s%s", mnum, modname1, modname2, modname3)
+doModl = function(mnum, modname1, modname2, modname3) {
+    modname = sprintf(
+		"%d)%s%s%s", 
+		mnum, 
+		modname1, 
+		modname2, 
+		modname3
+	)
     # read in design-matrix, part 1
     dmname = sprintf("DM%s.csv", modname1)
-    dmx = read.table(dmname, sep = ",", na = "-", header = FALSE, colClasses = c("character", "numeric"))
+    dmx = read.table(
+		dmname, 
+		sep = ",", 
+		na = "-", 
+		header = FALSE, 
+		colClasses = c("character", "numeric")
+	)
     dm1 = data.matrix(dmx[, 2:dim(dmx)[2]])
     lbls = dmx[, 1]
     npar <<- length(lbls)
@@ -282,13 +294,25 @@ occHabDyn = function(mnum, modname1, modname2, modname3) {
     # read in design-matrix, part 2
     
     dmname = sprintf("DM%s.csv", modname2)
-    dmx = read.table(dmname, sep = ",", na = "-", header = FALSE, colClasses = c("character", "numeric"))
+    dmx = read.table(
+		dmname, 
+		sep = ",", 
+		na = "-", 
+		header = FALSE, 
+		colClasses = c("character", "numeric")
+	)
     dm2 = data.matrix(dmx[, 2:dim(dmx)[2]])
     
     # read in design-matrix, part 3
     
     dmname = sprintf("DM%s.csv", modname3)
-    dmx = read.table(dmname, sep = ",", na = "-", header = FALSE, colClasses = c("character", "numeric"))
+    dmx = read.table(
+		dmname, 
+		sep = ",", 
+		na = "-", 
+		header = FALSE, 
+		colClasses = c("character", "numeric")
+	)
     dm3 = data.matrix(dmx[, 2:dim(dmx)[2]])
     
     # join 3 parts into one big design matrix...
