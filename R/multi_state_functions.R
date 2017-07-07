@@ -216,7 +216,7 @@ pq = function(beta, yr, detState, site_type) {
 
 #' @export
 
-Like = function(beta) {
+Like = function(beta, np2) {
     # convert vector of beta's to real parameters
 	realparms = linkfn(dm %*% beta)  
     xll = 0
@@ -268,66 +268,26 @@ Like = function(beta) {
 
 #' @export
 
-doModl = function(mnum, modname1, modname2, modname3) {
-    modname = sprintf(
-		"%d)%s%s%s", 
-		mnum, 
-		modname1, 
-		modname2, 
-		modname3
-	)
-    # read in design-matrix, part 1
-    dmname = sprintf("DM%s.csv", modname1)
-    dmx = read.table(
-		dmname, 
-		sep = ",", 
-		na = "-", 
-		header = FALSE, 
-		colClasses = c("character", "numeric")
-	)
-    dm1 = data.matrix(dmx[, 2:dim(dmx)[2]])
-    lbls = dmx[, 1]
-    npar <<- length(lbls)
-    np2 <<- npar/2
+doModl = function(mnum, dm1, dm2, dm3, modname="modname") {
+	lbls = dm1[, 1]
+	npar <<- length(lbls)
+	np2 <- npar/2
     
-    
-    # read in design-matrix, part 2
-    
-    dmname = sprintf("DM%s.csv", modname2)
-    dmx = read.table(
-		dmname, 
-		sep = ",", 
-		na = "-", 
-		header = FALSE, 
-		colClasses = c("character", "numeric")
-	)
-    dm2 = data.matrix(dmx[, 2:dim(dmx)[2]])
-    
-    # read in design-matrix, part 3
-    
-    dmname = sprintf("DM%s.csv", modname3)
-    dmx = read.table(
-		dmname, 
-		sep = ",", 
-		na = "-", 
-		header = FALSE, 
-		colClasses = c("character", "numeric")
-	)
-    dm3 = data.matrix(dmx[, 2:dim(dmx)[2]])
-    
-    # join 3 parts into one big design matrix...
+	# join 3 parts into one big design matrix
     dm <<- cbind(dm1, dm2, dm3)
-    nest = dim(dm)[2]  #  nest = number of estimated beta's ( = number of cols in design matrix)
-    b0 = rep(0, nest)  #  b0 = initial values for beta's
+    #  nest = number of estimated beta's ( = number of cols in design matrix)
+	nest = dim(dm)[2]
+    #  b0 = initial values for beta's
+	b0 = rep(0, nest)
     
-    # create a file to containe output...
+    # create a file to contain output
     outname = sprintf("%s.out", modname)
     unlink(outname)
     zz <- file(outname, open = "wt")
     mname <<- modname
     
-    # compute log-likelihood value for the initial values of beta...
-    xll = Like(b0)
+    # compute log-likelihood value for the initial values of beta
+    xll = Like(b0, np2)
     x = b0
     ans = list(value = xll, minimum = xll, par = b0, estimate = b0)
     cat(c("init values:", linkfn(dm %*% b0), "\n"))
@@ -335,7 +295,8 @@ doModl = function(mnum, modname1, modname2, modname3) {
     
     # call R optimization (nlm non-linear-model) routine to get maximum-likelihood estimates
     niter <<- 0
-    tm1 = proc.time()[1]  #  set initial timer to see how long the optimization takes
+	#  set initial timer to see how long the optimization takes
+    tm1 = proc.time()[1]
     # do optimization using likelihood function, 'Like' and init values, b0
     ans = nlm(Like, b0, hessian = TRUE)
     x = ans$estimate
